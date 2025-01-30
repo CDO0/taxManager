@@ -31,6 +31,25 @@ wwwroot/favicon.ico
 *.deps.json
 *.runtimeconfig.json
 
+# .NET / Blazor System Files
+*.csproj.user
+*.suo
+*.user
+*.cache
+*.pdb
+*.dll
+*.exe
+*.nupkg
+*.snupkg
+*.vsp
+*.vspx
+*.log
+*.tlog
+.nuget/
+sdk/
+System.*  # Ignores unnecessary system libraries
+
+
 
 # Ignore les fichiers de dépendances
 node_modules/
