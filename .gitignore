@@ -13,7 +13,7 @@ docker-compose.override.yml # Local Docker Compose override
 *.pyc                       # Python bytecode files
 __pycache__/                # Python cache directory
 
-# .NET (Frontend)
+# .NET 
 bin/                        # Build output directory
 obj/                        # Temporary object files
 .vs/                        # Visual Studio settings directory
@@ -30,6 +30,7 @@ wwwroot/index.html
 wwwroot/favicon.ico
 *.deps.json
 *.runtimeconfig.json
+Properties/launchSettings.json
 
 # .NET / Blazor System Files
 *.csproj.user
@@ -47,7 +48,10 @@ wwwroot/favicon.ico
 *.tlog
 .nuget/
 sdk/
-System.*  # Ignores unnecessary system libraries
+System.*  
+*.lock.json
+packages/
+project.lock.json
 
 
 
