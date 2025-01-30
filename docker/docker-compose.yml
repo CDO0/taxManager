@@ -1,0 +1,30 @@
+services:
+  database:
+    image: ibmcom/db2
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+
+  backend:
+    build:
+      context: ./cobol
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    depends_on:
+      - database
+
+  middleware:
+    build:
+      context: ./middleware
+    ports:
+      - "${MIDDLEWARE_PORT}:${MIDDLEWARE_PORT}"
+    depends_on:
+      - database
+      - backend
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    depends_on:
+      - middleware
