@@ -1,0 +1,17 @@
+Tax Manager
+Tax Manager is an application designed to process salary data from PDF documents, extract relevant information (such as name, company, and salary), and calculate taxes. 
+The app integrates a COBOL backend for processing, a Python middleware for managing API requests, C# (.NET) as frontend and DB2 for data persistence, all containerized using Docker.
+
+Technologies Used
+COBOL: Backend logic for processing salary data and calculating taxes.
+C#: Middleware for handling API requests and interfacing between the frontend and COBOL backend.
+.NET / Blazor: Frontend UI 
+DB2: Database for storing extracted data, utilizing DB2 in a Docker container.
+Docker: Containerization for all components to ensure portability and scalability.
+GitLab: CI/CD pipeline for continuous integration and deployment.
+Features
+Upload salary data PDFs.
+Automatically extract data (name, company, salary) from PDFs.
+Store and manage salary data in DB2.
+Tax calculation and processing using COBOL.
+Scalable and containerized for easy setup and deployment.
