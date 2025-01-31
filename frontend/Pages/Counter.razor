@@ -10,11 +10,21 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <button class="btn btn-success" @onclick="SendCountToBackend">Send Count</button>
 
+<p>@countMessage</p>
+
 @code {
+    // Define CounterResponse class in the same file
+    public class CounterResponse
+    {
+        public string? Message { get; set; }
+        public int Count { get; set; }
+    }
+
     [Inject] 
     private HttpClient? Http { get; set; } 
 
     private int currentCount = 0;
+    private string countMessage = string.Empty;
 
     private void IncrementCount()
     {
@@ -29,18 +39,25 @@
 
         try
         {
-            var response = await Http.PostAsJsonAsync("/api/counter", counterData);
+            var response = await Http.PostAsJsonAsync("http://localhost:5101/api/counter", counterData);
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Count sent successfully!");
+                // Deserialize the response into the CounterResponse object
+                var responseData = await response.Content.ReadFromJsonAsync<CounterResponse>();
+                
+                // Update the message to display in the UI
+                countMessage = responseData?.Message ?? "Count sent successfully!";
+                Console.WriteLine(responseData?.Message); // For debugging
             }
             else
             {
+                countMessage = "Error sending count."; 
                 Console.WriteLine("Error sending count.");
             }
         }
         catch (Exception ex)
         {
+            countMessage = $"Exception occurred: {ex.Message}";
             Console.WriteLine($"Exception occurred: {ex.Message}");
         }
     }
